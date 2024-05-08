@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
                 .body(CustomApiResponse.createFailWithout(HttpStatus.BAD_REQUEST.value(), errorMessage));
     }
 
+    // javax.validation.ConstraintViolationException package 내에서 발생하는 Error Handler
+    // ConstraintViolationException 은 RuntimeException을 상속하는 unhandled exception이다.
+    // 데이터베이스에서 발생하는 예외 중 하나로, 제약 조건이 위배되었을 때 발생하는 예외이다.
+    // ex)_ DB의 Unique field 에 중복된 값을 insert 하려고 할 때
+    // ex)_ FK 제약조건을 위반하여 참조할 수 없는 값을 참조하려고 할 때
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<CustomApiResponse<?>> handleConstraintViolationException(ConstraintViolationException e){
         String errorMassage = e.getConstraintViolations().stream()
