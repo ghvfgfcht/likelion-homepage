@@ -19,7 +19,7 @@ public class CustomTestController {
         // 1. 응답 Body 구성
         CustomApiResponse<Object> responseBody = CustomApiResponse.createSuccess(200/*HttpStatus.OK*/, null, "회원가입에 성공하였습니다.");
 
-        // 2. 응답 Body를 ResponseEntoty에 넣기
+        // 2. 응답 Body를 ResponseEntity에 넣기
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 
